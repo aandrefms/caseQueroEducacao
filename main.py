@@ -39,10 +39,9 @@ colunas_regiao = list(data_regiao_dic[0].keys())
 colunas_regiao[0] = 'id_municipio'
 
 # Executar função para criar database e tabelas (se encontra no arquivo construir_database.py)
-# Trocar os parametros para 'False' em caso de database e/ou tabelas já criados
 # Trocar o valor do parametro senha
 senha = input(f'Digite a senha para o database: ')
-construir_database.criar_database(senha=senha,controle_db=True, controle_tabela=True)
+construir_database.criar_database(senha=senha)
 
 
 # Função para inserir os dados no dataframe criado
@@ -77,18 +76,20 @@ def inserir_dados(nome_tabela, nome_colunas, dados):
     cursor = conn.cursor()
     try:
         cursor.execute(sql_string)
+        
         # Terminar comunicação com o database
         cursor.close()
+        
         # Executar as alterações
         conn.commit()
+        print(f'Dados inseridos na tabela {nome_tabela} com sucesso!')
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
         if conn is not None:
             conn.close()
-            print(f'Dados inseridos na tabela {nome_tabela} com sucesso!')
-
-
+            
+            
 # Chamar a função inserir dados para adicionar valores as tabelas 'regiao' e 'funcionario'
 # A tabela 'regiao' receberá as colunas 'municipio', 'uf' e 'regiao'
 inserir_dados('regiao', colunas_regiao, data_regiao_dic)
