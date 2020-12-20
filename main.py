@@ -71,7 +71,7 @@ def inserir_dados(nome_tabela, nome_colunas, dados):
     
     # Conectar ao database
     conn = psycopg2.connect(
-        database="case", user='postgres', password='manchester00', host='127.0.0.1', port='5432'
+        database="case", user='postgres', password=senha, host='127.0.0.1', port='5432'
     )
     
     cursor = conn.cursor()
