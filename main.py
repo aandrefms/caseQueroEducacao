@@ -41,7 +41,8 @@ colunas_regiao[0] = 'id_municipio'
 # Executar função para criar database e tabelas (se encontra no arquivo construir_database.py)
 # Trocar os parametros para 'False' em caso de database e/ou tabelas já criados
 # Trocar o valor do parametro senha
-construir_database.criar_database(senha='SUASENHA',controle_db=False, controle_tabela=True)
+senha = input(f'Digite a senha para o database: ')
+construir_database.criar_database(senha=senha,controle_db=True, controle_tabela=True)
 
 
 # Função para inserir os dados no dataframe criado
